@@ -44,4 +44,14 @@ class ChapterExercisesTest extends FunSuite with Matchers {
     addCurried(5)(2) should be (7)
     addCurried(2)(11) should be (13)
   }
+
+  test("Exercise 2.4: Uncurrying") {
+
+    def addCurried(x: Int): Int => Int = (y: Int) => x + y
+
+    val add = ChapterExercises.uncurry[Int, Int, Int](addCurried)
+
+    add(5, 2) should be (7)
+    add(2, 11) should be (13)
+  }
 }
