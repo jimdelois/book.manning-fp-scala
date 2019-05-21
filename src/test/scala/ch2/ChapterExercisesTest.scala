@@ -23,4 +23,16 @@ class ChapterExercisesTest extends FunSuite with Matchers {
     ChapterExercises.fib(7) should be (8)
     ChapterExercises.fib(8) should be (13)
   }
+
+  test("Exercise 2.2: Generic Array Sort") {
+    def compInt(a: Int, b:Int): Boolean = a <= b
+
+    ChapterExercises.isSorted[Int](Array(3, 4, 5), compInt) should be (true)
+    ChapterExercises.isSorted[Int](Array(3, 5, 4), compInt) should be (false)
+
+    def compString(a: String, b:String): Boolean = a <= b
+
+    ChapterExercises.isSorted[String](Array("Mom", "Pop"), compString) should be (true)
+    ChapterExercises.isSorted[String](Array("Pop", "Mom"), compString) should be (false)
+  }
 }
