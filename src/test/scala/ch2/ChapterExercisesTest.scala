@@ -35,4 +35,13 @@ class ChapterExercisesTest extends FunSuite with Matchers {
     ChapterExercises.isSorted[String](Array("Mom", "Pop"), compString) should be (true)
     ChapterExercises.isSorted[String](Array("Pop", "Mom"), compString) should be (false)
   }
+
+  test("Exercise 2.3: Basic Currying") {
+    def add(x: Int, y: Int): Int = x + y
+
+    val addCurried = ChapterExercises.curry[Int, Int, Int](add)
+
+    addCurried(5)(2) should be (7)
+    addCurried(2)(11) should be (13)
+  }
 }
