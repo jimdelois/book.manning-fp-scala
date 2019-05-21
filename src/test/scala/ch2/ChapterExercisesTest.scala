@@ -54,4 +54,12 @@ class ChapterExercisesTest extends FunSuite with Matchers {
     add(5, 2) should be (7)
     add(2, 11) should be (13)
   }
+
+  test("Exercise 2.5: Composition") {
+    def multiplyByTwo (a: Int): Int = a * 2
+    def addOne(a: Int): Int = a + 1
+
+    val fn = ChapterExercises.compose(addOne, multiplyByTwo)
+    fn(3) should be (7)
+  }
 }
