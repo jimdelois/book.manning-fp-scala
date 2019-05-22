@@ -58,7 +58,6 @@ object List {
     *
     */
   def drop[A](l: List[A], n: Int): List[A] = l match {
-    case Nil => Nil
     case Cons(_, xs) if n > 0 => drop(xs, n-1)
     case _ => l
   }
@@ -70,7 +69,6 @@ object List {
     * as they match a predicate.
     */
   def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
-    case Nil => Nil
     case Cons(x, xs) if f(x) => dropWhile(xs, f)
     case _ => l
   }
@@ -84,7 +82,6 @@ object List {
     * function be implemented in constant time like tail?
     */
   def init[A](l: List[A]): List[A] = l match {
-    case Nil => Nil
     case Cons(_, Nil) => Nil
     case Cons(x, xs) => Cons(x, init(xs))
     case _ => l
