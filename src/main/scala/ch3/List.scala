@@ -47,4 +47,23 @@ object List {
     case Nil => List[A](h)
     case Cons(_, xs) => Cons[A](h, xs)
   }
+
+  /**
+    * Exercise 3.4
+    *
+    * Generalize tail to the function drop, which removes the first n elements
+    * from a list. Note that this function takes time proportional only
+    * to the number of elements being dropped—we don’t need to make a copy of
+    * the entire List.
+    *
+    */
+  def drop[A](l: List[A], n: Int): List[A] = {
+    @scala.annotation.tailrec
+    def go(list: List[A], count: Int): List[A] = {
+      if (count > n) list
+      else go(tail(list), count+1)
+    }
+
+    go(l, 1)
+  }
 }

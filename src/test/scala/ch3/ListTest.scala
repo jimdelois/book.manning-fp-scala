@@ -66,7 +66,21 @@ class ListTest extends FunSuite with Matchers {
   test("Exercise 3.3: setHead") {
 
     List.setHead(Nil, 4) should be (List[Int](4))
-    List.setHead[String](List("A", "B", "C"), "D") should be (List[String]("D", "B", "C"))
-    List.setHead[Int](List(3), 5) should be (List[Int](5))
+    List.setHead(List[String]("A", "B", "C"), "D") should be (List[String]("D", "B", "C"))
+    List.setHead(List[Int](3), 5) should be (List[Int](5))
+  }
+
+  /**
+    * Exercise 3.4
+    *
+    * Generalize tail to the function drop, which removes the first n elements
+    * from a list. Note that this function takes time proportional only
+    * to the number of elements being dropped—we don’t need to make a copy of
+    * the entire List.
+    *
+    */
+  test("drop") {
+    List.drop(Nil, 4) should be (Nil)
+    List.drop(List[Int](1, 2, 3, 4, 5), 3) should be (List[Int](4, 5))
   }
 }
