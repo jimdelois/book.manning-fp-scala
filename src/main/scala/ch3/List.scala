@@ -57,13 +57,9 @@ object List {
     * the entire List.
     *
     */
-  def drop[A](l: List[A], n: Int): List[A] = {
-    @scala.annotation.tailrec
-    def go(list: List[A], count: Int): List[A] = {
-      if (count > n) list
-      else go(tail(list), count+1)
-    }
-
-    go(l, 1)
+  def drop[A](l: List[A], n: Int): List[A] = l match {
+    case Nil => Nil
+    case Cons(_, xs) if n > 0 => drop(xs, n-1)
+    case _ => l
   }
 }

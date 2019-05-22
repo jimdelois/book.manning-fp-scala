@@ -82,5 +82,6 @@ class ListTest extends FunSuite with Matchers {
   test("drop") {
     List.drop(Nil, 4) should be (Nil)
     List.drop(List[Int](1, 2, 3, 4, 5), 3) should be (List[Int](4, 5))
+    List.drop(List[Int](1, 2), 3) should be (Nil)
   }
 }
