@@ -56,4 +56,17 @@ class ListTest extends FunSuite with Matchers {
 
     List.tail(List[String]("A", "Bee", "See")) should be (List[String]("Bee", "See"))
   }
+
+  /**
+    * Exercise 3.3
+    *
+    * Using the same idea, implement the function setHead for replacing the
+    * first element of a List with a different value.
+    */
+  test("Exercise 3.3: setHead") {
+
+    List.setHead(Nil, 4) should be (List[Int](4))
+    List.setHead[String](List("A", "B", "C"), "D") should be (List[String]("D", "B", "C"))
+    List.setHead[Int](List(3), 5) should be (List[Int](5))
+  }
 }

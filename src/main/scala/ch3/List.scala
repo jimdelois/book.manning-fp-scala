@@ -36,4 +36,15 @@ object List {
     case Nil => Nil
     case Cons(_, xs) => xs
   }
+
+  /**
+    * Exercise 3.3
+    *
+    * Using the same idea, implement the function setHead for replacing the
+    * first element of a List with a different value.
+    */
+  def setHead[A](l: List[A], h: A): List[A] = l match {
+    case Nil => List[A](h)
+    case Cons(_, xs) => Cons[A](h, xs)
+  }
 }
