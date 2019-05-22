@@ -84,4 +84,18 @@ class ListTest extends FunSuite with Matchers {
     List.drop(List[Int](1, 2, 3, 4, 5), 3) should be (List[Int](4, 5))
     List.drop(List[Int](1, 2), 3) should be (Nil)
   }
+
+  /**
+    * Exercise 3.5
+    *
+    * Implement dropWhile, which removes elements from the List prefix as long
+    * as they match a predicate.
+    */
+  test("dropWhile") {
+    def dropper: Int => Boolean = (x: Int) => x % 2 == 0
+
+    List.dropWhile(Nil, dropper) should be (Nil)
+
+    List.dropWhile(List[Int](2, 4, 6, 3, 2, 4), dropper) should be (List(3, 2, 4))
+  }
 }
