@@ -5,6 +5,14 @@ import org.scalatest._
 /** @version 1.1.0 */
 class ChapterExercisesTest extends FunSuite with Matchers {
 
+  /**
+    * Exercise 2.1
+    *
+    * Write a recursive function to get the nth Fibonacci number (http://mng.bz/C29s).
+    * The first two Fibonacci numbers are 0 and 1. The nth number is always the sum of the previous two.
+    * The sequence begins 0, 1, 1, 2, 3, 5.
+    * Your definition should use a local tail-recursive function.
+    */
   test("Exercise 2.1: Fibonacci recursion") {
 
     // There is no "zeroth" number
@@ -24,6 +32,12 @@ class ChapterExercisesTest extends FunSuite with Matchers {
     ChapterExercises.fib(8) should be (13)
   }
 
+  /**
+    * Exercise 2.2
+    *
+    * Implement isSorted, which checks whether an Array[A] is sorted according to a
+    * given comparison function:
+    */
   test("Exercise 2.2: Generic Array Sort") {
     def compInt(a: Int, b:Int): Boolean = a <= b
 
@@ -36,6 +50,13 @@ class ChapterExercisesTest extends FunSuite with Matchers {
     ChapterExercises.isSorted[String](Array("Pop", "Mom"), compString) should be (false)
   }
 
+  /**
+    * Exercise 2.3
+    *
+    * Let’s look at another example, currying, which converts a function f of two arguments
+    * into a function of one argument that partially applies f. Here again there’s only one
+    * implementation that compiles. Write this implementation.
+    */
   test("Exercise 2.3: Basic Currying") {
     def add(x: Int, y: Int): Int = x + y
 
@@ -45,6 +66,12 @@ class ChapterExercisesTest extends FunSuite with Matchers {
     addCurried(2)(11) should be (13)
   }
 
+  /**
+    * Exercise 2.4
+    *
+    * Implement uncurry, which reverses the transformation of curry. Note that
+    * since => associates to the right, A => (B => C) can be written as A => B => C.
+    */
   test("Exercise 2.4: Uncurrying") {
 
     def addCurried(x: Int): Int => Int = (y: Int) => x + y
@@ -55,6 +82,11 @@ class ChapterExercisesTest extends FunSuite with Matchers {
     add(2, 11) should be (13)
   }
 
+  /**
+    * Exercise 2.5
+    *
+    * Implement the higher-order function that composes two functions.
+    */
   test("Exercise 2.5: Composition") {
     def multiplyByTwo (a: Int): Int = a * 2
     def addOne(a: Int): Int = a + 1
