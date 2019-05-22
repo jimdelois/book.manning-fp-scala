@@ -113,4 +113,30 @@ class ListTest extends FunSuite with Matchers {
     List.init(List[Int](1, 2, 3, 4)) should be (List[Int](1, 2, 3))
     List.init(List[Int](4)) should be (Nil)
   }
+
+  test("Sum By Folding Right") {
+
+    List.sumByFoldingRight(Nil) should be (0)
+    List.sumByFoldingRight(List()) should be (0)
+
+    List.sumByFoldingRight(List[Int](4)) should be (4)
+    List.sumByFoldingRight(List[Int](3, 4, 5)) should be (12)
+    List.sumByFoldingRight(Cons[Int](3, Nil)) should be (3)
+    List.sumByFoldingRight(Cons[Int](3, Cons[Int](4, Nil))) should be (7)
+    List.sumByFoldingRight(Cons[Int](3, List[Int](4, 5))) should be (12)
+    List.sumByFoldingRight(Cons[Int](3, Cons[Int](4, Cons[Int](5, Nil)))) should be (12)
+  }
+
+  test("Product By Folding Right") {
+
+    List.productByFoldingRight(Nil) should be (1)
+    List.productByFoldingRight(List()) should be (1)
+
+    List.productByFoldingRight(List[Int](4)) should be (4)
+    List.productByFoldingRight(List[Int](3, 4, 5)) should be (60)
+    List.productByFoldingRight(Cons[Int](3, Nil)) should be (3)
+    List.productByFoldingRight(Cons[Int](3, Cons[Int](4, Nil))) should be (12)
+    List.productByFoldingRight(Cons[Int](3, List[Int](4, 5))) should be (60)
+    List.productByFoldingRight(Cons[Int](3, Cons[Int](4, Cons[Int](5, Nil)))) should be (60)
+  }
 }

@@ -86,4 +86,13 @@ object List {
     case Cons(x, xs) => Cons(x, init(xs))
     case _ => l
   }
+
+  private def foldRight[A, B](l: List[A], default: B)(f: (A, B) => B): B = l match {
+    case Nil => default
+    case Cons(x, xs) => f(x, foldRight(xs, default)(f))
+  }
+
+  def sumByFoldingRight(l: List[Int]): Int = foldRight(l, 0)(_ + _)
+
+  def productByFoldingRight(l: List[Int]): Int = foldRight(l, 1)(_ * _)
 }
