@@ -79,7 +79,8 @@ class ListTest extends FunSuite with Matchers {
     * the entire List.
     *
     */
-  test("drop") {
+  test("Exercise 3.4: drop") {
+
     List.drop(Nil, 4) should be (Nil)
     List.drop(List[Int](1, 2, 3, 4, 5), 3) should be (List[Int](4, 5))
     List.drop(List[Int](1, 2), 3) should be (Nil)
@@ -91,11 +92,25 @@ class ListTest extends FunSuite with Matchers {
     * Implement dropWhile, which removes elements from the List prefix as long
     * as they match a predicate.
     */
-  test("dropWhile") {
+  test("Exercise 3.5: dropWhile") {
     def dropper: Int => Boolean = (x: Int) => x % 2 == 0
 
     List.dropWhile(Nil, dropper) should be (Nil)
+    List.dropWhile(List[Int](2, 4, 6, 3, 2, 4), dropper) should be (List[Int](3, 2, 4))
+  }
 
-    List.dropWhile(List[Int](2, 4, 6, 3, 2, 4), dropper) should be (List(3, 2, 4))
+  /**
+    * Exercise 3.6
+    *
+    * Not everything works out so nicely. Implement a function, init, that
+    * returns a List consisting of all but the last element of a List. So,
+    * given List(1,2,3,4), init will return List(1,2,3). Why can’t this
+    * function be implemented in constant time like tail?
+    */
+  test("Exercise 3.6: Init") {
+
+    List.init(Nil) should be (Nil)
+    List.init(List[Int](1, 2, 3, 4)) should be (List[Int](1, 2, 3))
+    List.init(List[Int](4)) should be (Nil)
   }
 }
