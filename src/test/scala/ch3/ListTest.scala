@@ -152,4 +152,49 @@ class ListTest extends FunSuite with Matchers {
     List.length(List[Int](1, 3, 3, 4, 5, 5)) should be (6)
     List.length(List[String]("A", "B")) should be (2)
   }
+
+  /**
+    * Exercise 3.11
+    *
+    * Write sum, product, and a function to compute the length of a list using foldLeft.
+    */
+  test("Exercise 3.11: Sum using foldLeft") {
+
+    List.sumByFoldingLeft(Nil) should be (0)
+    List.sumByFoldingLeft(List()) should be (0)
+
+    List.sumByFoldingLeft(List[Int](4)) should be (4)
+    List.sumByFoldingLeft(List[Int](3, 4, 5)) should be (12)
+    List.sumByFoldingLeft(Cons[Int](3, Nil)) should be (3)
+    List.sumByFoldingLeft(Cons[Int](3, Cons[Int](4, Nil))) should be (7)
+    List.sumByFoldingLeft(Cons[Int](3, List[Int](4, 5))) should be (12)
+    List.sumByFoldingLeft(Cons[Int](3, Cons[Int](4, Cons[Int](5, Nil)))) should be (12)
+  }
+
+  /**
+    * Exercise 3.11 (Cont'd)
+    */
+  test("Exercise 3.11: Product using foldLeft") {
+
+    List.productByFoldingLeft(Nil) should be (1)
+    List.productByFoldingLeft(List()) should be (1)
+
+    List.productByFoldingLeft(List[Int](4)) should be (4)
+    List.productByFoldingLeft(List[Int](3, 4, 5)) should be (60)
+    List.productByFoldingLeft(Cons[Int](3, Nil)) should be (3)
+    List.productByFoldingLeft(Cons[Int](3, Cons[Int](4, Nil))) should be (12)
+    List.productByFoldingLeft(Cons[Int](3, List[Int](4, 5))) should be (60)
+    List.productByFoldingLeft(Cons[Int](3, Cons[Int](4, Cons[Int](5, Nil)))) should be (60)
+  }
+
+  /**
+    * Exercise 3.11 (Cont'd)
+    */
+  test("Exercise 3.11: Length using foldLeft") {
+    List.lengthByFoldingLeft(Nil) should be (0)
+    List.lengthByFoldingLeft(List[Int](0)) should be (1)
+    List.lengthByFoldingLeft(List[Int](-1)) should be (1)
+    List.lengthByFoldingLeft(List[Int](1, 3, 3, 4, 5, 5)) should be (6)
+    List.lengthByFoldingLeft(List[String]("A", "B")) should be (2)
+  }
 }

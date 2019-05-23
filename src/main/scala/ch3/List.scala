@@ -116,7 +116,6 @@ object List {
     * function, foldLeft, that is tail-recursive, using the techniques we
     * discussed in the previous chapter.
     */
-
   private def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B = {
     @scala.annotation.tailrec
     def go(l: List[A], agg: B): B = l match {
@@ -125,4 +124,13 @@ object List {
     }
     go(l, z)
   }
+
+  /**
+    * Exercise 3.11
+    *
+    * Write sum, product, and a function to compute the length of a list using foldLeft.
+    */
+  def sumByFoldingLeft(l: List[Int]): Int = foldLeft(l, 0)(_ + _)
+  def productByFoldingLeft(l: List[Int]): Int = foldLeft(l, 1)(_ * _)
+  def lengthByFoldingLeft[A](l: List[A]): Int = foldLeft(l, 0)((agg, _) => agg + 1)
 }
