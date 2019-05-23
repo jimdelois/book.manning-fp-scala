@@ -57,8 +57,9 @@ object List {
     * the entire List.
     *
     */
+  @scala.annotation.tailrec
   def drop[A](l: List[A], n: Int): List[A] = l match {
-    case Cons(_, xs) if n > 0 => drop(xs, n-1)
+    case Cons(_, xs) if n > 0 => drop(xs, n - 1)
     case _ => l
   }
 
@@ -68,6 +69,7 @@ object List {
     * Implement dropWhile, which removes elements from the List prefix as long
     * as they match a predicate.
     */
+  @scala.annotation.tailrec
   def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
     case Cons(x, xs) if f(x) => dropWhile(xs, f)
     case _ => l
@@ -103,5 +105,24 @@ object List {
     *
     * Compute the length of a list using foldRight.
     */
-  def length[A](l: List[A]): Int = foldRight(l, 0)((_,agg) => 1 + agg)
+  def length[A](l: List[A]): Int = foldRight(l, 0)((_, agg) => 1 + agg)
+
+  /**
+    * Exercise 3.10
+    *
+    * Our implementation of foldRight is not tail-recursive and will result in a
+    * StackOverflowError for large lists (we say it’s not stack-safe). Convince
+    * yourself that this is the case, and then write another general list-recursion
+    * function, foldLeft, that is tail-recursive, using the techniques we
+    * discussed in the previous chapter.
+    */
+
+  private def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B = {
+    @scala.annotation.tailrec
+    def go(l: List[A], agg: B): B = l match {
+      case Nil => agg
+      case Cons(x, xs) => go(xs, f(agg, x))
+    }
+    go(l, z)
+  }
 }
