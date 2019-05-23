@@ -139,4 +139,17 @@ class ListTest extends FunSuite with Matchers {
     List.productByFoldingRight(Cons[Int](3, List[Int](4, 5))) should be (60)
     List.productByFoldingRight(Cons[Int](3, Cons[Int](4, Cons[Int](5, Nil)))) should be (60)
   }
+
+  /**
+    * Exercise 3.9
+    *
+    * Compute the length of a list using foldRight.
+    */
+  test("Exercise 3.9: Length using foldRight") {
+    List.length(Nil) should be (0)
+    List.length(List[Int](0)) should be (1)
+    List.length(List[Int](-1)) should be (1)
+    List.length(List[Int](1, 3, 3, 4, 5, 5)) should be (6)
+    List.length(List[String]("A", "B")) should be (2)
+  }
 }

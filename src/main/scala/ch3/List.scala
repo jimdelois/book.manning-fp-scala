@@ -94,5 +94,14 @@ object List {
 
   def sumByFoldingRight(l: List[Int]): Int = foldRight(l, 0)(_ + _)
 
+  // TODO: Can this support an "early exit" if it encounters a zero?
+  //       Try to avoid further looping if so, as posited by p40
   def productByFoldingRight(l: List[Int]): Int = foldRight(l, 1)(_ * _)
+
+  /**
+    * Exercise 3.9
+    *
+    * Compute the length of a list using foldRight.
+    */
+  def length[A](l: List[A]): Int = foldRight(l, 0)((_,agg) => 1 + agg)
 }
