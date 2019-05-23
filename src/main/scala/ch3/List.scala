@@ -133,4 +133,14 @@ object List {
   def sumByFoldingLeft(l: List[Int]): Int = foldLeft(l, 0)(_ + _)
   def productByFoldingLeft(l: List[Int]): Int = foldLeft(l, 1)(_ * _)
   def lengthByFoldingLeft[A](l: List[A]): Int = foldLeft(l, 0)((agg, _) => agg + 1)
+
+  /**
+    * Exercise 3.12
+    *
+    * Write a function that returns the reverse of a list (given List(1,2,3) it
+    * returns List(3,2,1)). See if you can write it using a fold.
+    */
+  def reverse[A](l: List[A]): List[A] = {
+    foldLeft[A,List[A]](l, Nil)((agg, x) => Cons(x, agg))
+  }
 }

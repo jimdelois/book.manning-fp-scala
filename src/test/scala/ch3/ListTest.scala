@@ -191,10 +191,24 @@ class ListTest extends FunSuite with Matchers {
     * Exercise 3.11 (Cont'd)
     */
   test("Exercise 3.11: Length using foldLeft") {
+
     List.lengthByFoldingLeft(Nil) should be (0)
     List.lengthByFoldingLeft(List[Int](0)) should be (1)
     List.lengthByFoldingLeft(List[Int](-1)) should be (1)
     List.lengthByFoldingLeft(List[Int](1, 3, 3, 4, 5, 5)) should be (6)
     List.lengthByFoldingLeft(List[String]("A", "B")) should be (2)
+  }
+
+  /**
+    * Exercise 3.12
+    *
+    * Write a function that returns the reverse of a list (given List(1,2,3) it
+    * returns List(3,2,1)). See if you can write it using a fold.
+    */
+  test("Exercise 3.12: Reversing a List") {
+
+    List.reverse(Nil) should be (Nil)
+    List.reverse(List[Int](1, 2, 3)) should be (List[Int](3, 2, 1))
+    List.reverse(List[String]("J", "i", "m")) should be (List[String]("m", "i", "J"))
   }
 }
