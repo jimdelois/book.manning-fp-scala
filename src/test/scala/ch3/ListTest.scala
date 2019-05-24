@@ -240,4 +240,19 @@ class ListTest extends FunSuite with Matchers {
       List[String]("D", "E", "F")
     ) should be (List[String]("A", "B", "C", "D", "E", "F"))
   }
+
+  /**
+    * Exercise 3.15
+    *
+    * Hard: Write a function that concatenates a list of lists into a single list.
+    * Its runtime should be linear in the total length of all lists. Try to use
+    * functions we have already defined.
+    */
+  test("Exercise 3.15: Concat") {
+    List.concat(List[List[String]](
+      List[String]("A", "B"),
+      List[String]("C"),
+      List[String]("D", "E")
+    )) should be (List[String]("A", "B", "C", "D", "E"))
+  }
 }

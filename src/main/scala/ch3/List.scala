@@ -163,5 +163,18 @@ object List {
     */
   def append[A](xs: List[A], ys: List[A]): List[A] = {
     foldRight(xs, ys)((x, agg) => Cons(x, agg))
+    // Or, for tail recursion (but an added reverse):
+    // foldLeft(reverse(xs))((agg, x) => Cons(agg, x))
+  }
+
+  /**
+    * Exercise 3.15
+    *
+    * Hard: Write a function that concatenates a list of lists into a single list.
+    * Its runtime should be linear in the total length of all lists. Try to use
+    * functions we have already defined.
+    */
+  def concat[A](l: List[List[A]]): List[A] = {
+    foldLeft[List[A],List[A]](l, Nil)(append)
   }
 }
