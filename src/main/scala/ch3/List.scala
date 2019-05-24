@@ -177,4 +177,15 @@ object List {
   def concat[A](l: List[List[A]]): List[A] = {
     foldLeft[List[A],List[A]](l, Nil)(append)
   }
+
+  /**
+    * Exercise 3.16
+    *
+    * Write a function that transforms a list of integers by adding 1 to each
+    * element. (Reminder: this should be a pure function that returns
+    * a new List!)
+    */
+  def addToEach(l: List[Int], n: Int): List[Int] = {
+    reverse(foldLeft[Int,List[Int]](l, Nil)((l, x) => Cons(x+n, l)))
+  }
 }

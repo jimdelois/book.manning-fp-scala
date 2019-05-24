@@ -255,4 +255,16 @@ class ListTest extends FunSuite with Matchers {
       List[String]("D", "E")
     )) should be (List[String]("A", "B", "C", "D", "E"))
   }
+
+  /**
+    * Exercise 3.16
+    *
+    * Write a function that transforms a list of integers by adding 1 to each
+    * element. (Reminder: this should be a pure function that returns
+    * a new List!)
+    */
+  test("Excercise 3.16: Add One") {
+    // I obviously genericized this, but the point is the same
+    List.addToEach(List[Int](1, 2, 3), 4) should be (List(5, 6, 7))
+  }
 }
