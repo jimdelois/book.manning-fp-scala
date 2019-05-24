@@ -188,4 +188,14 @@ object List {
   def addToEach(l: List[Int], n: Int): List[Int] = {
     reverse(foldLeft[Int,List[Int]](l, Nil)((l, x) => Cons(x+n, l)))
   }
+
+  /**
+    * Exercise 3.17
+    *
+    * Write a function that turns each value in a List[Double] into a String.
+    * You can use the expression d.toString to convert some d: Double to a String.
+    */
+  def dubString(l: List[Double]): List[String] = {
+    foldRight[Double,List[String]](l, Nil)((x, l) => Cons(x.toString, l))
+  }
 }

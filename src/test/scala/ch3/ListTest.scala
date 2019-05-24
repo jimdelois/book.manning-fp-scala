@@ -267,4 +267,17 @@ class ListTest extends FunSuite with Matchers {
     // I obviously genericized this, but the point is the same
     List.addToEach(List[Int](1, 2, 3), 4) should be (List(5, 6, 7))
   }
+
+  /**
+    * Exercise 3.17
+    *
+    * Write a function that turns each value in a List[Double] into a String.
+    * You can use the expression d.toString to convert some d: Double to a String.
+    */
+  test("Exercise 3.17: Double to String") {
+    List.dubString(
+      List[Double](2.3, 4.5, 5.22)
+    ) should be (List[String]("2.3", "4.5", "5.22"))
+  }
+
 }
