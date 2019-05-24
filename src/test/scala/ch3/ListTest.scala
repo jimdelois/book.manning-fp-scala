@@ -211,4 +211,21 @@ class ListTest extends FunSuite with Matchers {
     List.reverse(List[Int](1, 2, 3)) should be (List[Int](3, 2, 1))
     List.reverse(List[String]("J", "i", "m")) should be (List[String]("m", "i", "J"))
   }
+
+  /**
+    * Exercise 3.13
+    *
+    * Hard: Can you write foldLeft in terms of foldRight? How about the other way
+    * around? Implementing foldRight via foldLeft is useful because it lets us implement
+    * foldRight tail-recursively, which means it works even for large lists without
+    * overflow- ing the stack.
+    */
+  test("Exercise 3.13: foldRightTail") {
+
+    List.foldRightTail(List[Int](3, 4, 5), 0)(_ + _) should be (12)
+    List.foldRightTail(List[Int](3, 4, 5), 1)(_ * _) should be (60)
+
+    List.foldRightTail(List[Int](1, 3, 3, 4, 5, 5), 0)((_, agg) => agg + 1) should be (6)
+    List.foldRightTail(List[String]("A", "B"), 0)((_, agg) => agg + 1) should be (2)
+  }
 }
