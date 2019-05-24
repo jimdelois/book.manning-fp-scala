@@ -155,4 +155,13 @@ object List {
   def foldRightTail[A,B](l: List[A], z: B)(f: (A, B) => B): B = {
     foldLeft(reverse(l), z)((b: B, a: A) => f(a, b))
   }
+
+  /**
+    * Exercise 3.14
+    *
+    * Implement append in terms of either foldLeft or foldRight.
+    */
+  def append[A](xs: List[A], ys: List[A]): List[A] = {
+    foldRight(xs, ys)((x, agg) => Cons(x, agg))
+  }
 }

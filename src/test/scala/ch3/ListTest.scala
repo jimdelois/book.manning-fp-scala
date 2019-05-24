@@ -228,4 +228,16 @@ class ListTest extends FunSuite with Matchers {
     List.foldRightTail(List[Int](1, 3, 3, 4, 5, 5), 0)((_, agg) => agg + 1) should be (6)
     List.foldRightTail(List[String]("A", "B"), 0)((_, agg) => agg + 1) should be (2)
   }
+
+  /**
+    * Exercise 3.14
+    *
+    * Implement append in terms of either foldLeft or foldRight.
+    */
+  test("Exercise 3.14: Append") {
+    List.append(
+      List[String]("A", "B", "C"),
+      List[String]("D", "E", "F")
+    ) should be (List[String]("A", "B", "C", "D", "E", "F"))
+  }
 }
