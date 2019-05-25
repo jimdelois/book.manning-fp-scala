@@ -198,4 +198,72 @@ object List {
   def dubString(l: List[Double]): List[String] = {
     foldRight[Double,List[String]](l, Nil)((x, l) => Cons(x.toString, l))
   }
+
+  /**
+    * Exercise 3.18
+    *
+    * Write a function map that generalizes modifying each element in a list while
+    * maintaining the structure of the list. Here is its signature:
+    */
+  def map[A,B](as: List[A])(f: A => B): List[B] = {
+    foldLeft[A,List[B]](reverse(as), Nil)((b, a) => Cons(f(a), b))
+  }
+
+  /**
+    * Exercise 3.19
+    *
+    * Write a function filter that removes elements from a list unless they satisfy a
+    * given predicate. Use it to remove all odd numbers from a List[Int].
+    */
+  def filter[A](as: List[A])(f: A => Boolean): List[A] = {
+    foldLeft[A,List[A]](reverse(as), Nil)((b, a) => if (f(a)) Cons(a, b) else b)
+  }
+
+  /**
+    * Exercise 3.20
+    *
+    * Write a function flatMap that works like map except that the function given will
+    * return a list instead of a single result, and that list should be inserted into
+    * the final resulting list.
+    *
+    * For instance, flatMap(List(1,2,3))(i => List(i,i)) should result in
+    * List(1,1,2,2,3,3)
+    */
+  def flatMap[A,B](as: List[A])(f: A => List[B]): List[B] = {
+    foldLeft[A,List[B]](as, Nil)((b, a) => List.append(b, f(a)))
+    // Ha - this is easier: concat(map(as)(f))
+  }
+
+  /**
+    * Exercise 3.21
+    *
+    * Use flatMap to implement filter.
+    */
+  def filterFlatMap[A](as: List[A])(f: A => Boolean): List[A] = {
+    flatMap(as)(a => if (f(a)) List(a) else Nil)
+  }
+
+  /**
+    * Exercise 3.22
+    *
+    * Write a function that accepts two lists and constructs a new list by adding corresponding
+    * elements. For example, List(1,2,3) and List(4,5,6) become List(5,7,9).
+    */
+  def zipAdd(xs: List[Int], ys: List[Int]): List[Int] = (xs, ys) match {
+    case (_, Nil) => Nil
+    case (Nil, _) => Nil
+    case (Cons(x,xs),Cons(y,ys)) => Cons(x+y, zipAdd(xs, ys))
+  }
+
+  /**
+    * Exercise 3.23
+    *
+    * Generalize the function you just wrote so that it’s not specific to integers or
+    * addition. Name your generalized function zipWith.
+    */
+  def zipWith[A,B,C](xs: List[A], ys: List[B])(f:(A,B) => C): List[C] = (xs, ys) match {
+    case (_, Nil) => Nil
+    case (Nil, _) => Nil
+    case (Cons(x,xs),Cons(y,ys)) => Cons(f(x,y), zipWith(xs, ys)(f))
+  }
 }

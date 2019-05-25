@@ -280,4 +280,72 @@ class ListTest extends FunSuite with Matchers {
     ) should be (List[String]("2.3", "4.5", "5.22"))
   }
 
+  /**
+    * Exercise 3.18
+    *
+    * Write a function map that generalizes modifying each element in a list while
+    * maintaining the structure of the list. Here is its signature:
+    */
+  test("Exercise 3.18: Map" ) {
+    List.map(
+      List[Double](2.3, 4.5, 5.22)
+    )(_.toString()) should be (List[String]("2.3", "4.5", "5.22"))
+  }
+
+  /**
+    * Exercise 3.19
+    *
+    * Write a function filter that removes elements from a list unless they satisfy a
+    * given predicate. Use it to remove all odd numbers from a List[Int].
+    */
+  test("Exercise 3.19: Filter") {
+    List.filter(List[Int](1,2,3,4,5))(_ % 2 == 0) should be (List[Int](2,4))
+  }
+
+  /**
+    * Exercise 3.20
+    *
+    * Write a function flatMap that works like map except that the function given will
+    * return a list instead of a single result, and that list should be inserted into
+    * the final resulting list.
+    *
+    * For instance, flatMap(List(1,2,3))(i => List(i,i)) should result in
+    * List(1,1,2,2,3,3)
+    */
+  test("Exercise 3.20: flatMap") {
+    List.flatMap(List[Int](1,2,3))(i => List(i,i)) should be (List[Int](1,1,2,2,3,3))
+  }
+
+  /**
+    * Exercise 3.21
+    *
+    * Use flatMap to implement filter.
+    */
+  test("Exercise 3.21: Filter via flatMap") {
+    List.filterFlatMap(List[Int](1,2,3,4,5))(_ % 2 == 0) should be (List[Int](2,4))
+  }
+
+  /**
+    * Exercise 3.22
+    *
+    * Write a function that accepts two lists and constructs a new list by adding corresponding
+    * elements. For example, List(1,2,3) and List(4,5,6) become List(5,7,9).
+    */
+  test("Exercise 3.22: Integer Addition Zip") {
+    List.zipAdd(List[Int](1,2,3),List[Int](4,5,6)) should be (List[Int](5,7,9))
+  }
+
+  /**
+    * Exercise 3.23
+    *
+    * Generalize the function you just wrote so that it’s not specific to integers or
+    * addition. Name your generalized function zipWith.
+    */
+  test("Exercise 3.23: Zip With") {
+    List.zipWith(
+      List[Int](1,2,3),
+      List[Int](4,5,6)
+    )((x: Int, y:Int) => x + y) should be (List[Int](5,7,9))
+  }
+
 }
