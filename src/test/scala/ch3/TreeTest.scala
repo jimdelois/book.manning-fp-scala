@@ -113,4 +113,11 @@ class TreeTest extends FunSuite with Matchers {
 
     Tree.sizeFold(exampleTree) should be (7)
   }
+
+  /**
+    * Exercise 3.29
+    */
+  test("Exercise 3.29: Maximum via Fold") {
+    Tree.maximumFold(exampleTreeInt) should be (25)
+  }
 }

@@ -76,7 +76,9 @@ object Tree {
   /**
     * Exercise 3.29
     */
-  // TODO: Complete maximumFold
+  def maximumFold(t: Tree[Int]): Int = {
+    fold(t)(value => value)((l, r) => l.max(r))
+  }
 
   /**
     * Exercise 3.29
