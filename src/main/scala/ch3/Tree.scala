@@ -83,7 +83,9 @@ object Tree {
   /**
     * Exercise 3.29
     */
-  // TODO: Complete depthFold
+  def depthFold[A](t: Tree[A]): Int = {
+    fold(t)(_ => 0)((l, r) => l.max(r) + 1)
+  }
 
   /**
     * Exercise 3.29
