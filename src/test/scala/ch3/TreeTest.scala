@@ -74,4 +74,30 @@ class TreeTest extends FunSuite with Matchers {
   test("Exercise 3.27 Depth") {
     Tree.depth(exampleTree) should be (2)
   }
+
+  /**
+    * Exercise 3.28
+    *
+    * Write a function map, analogous to the method of the same name on
+    * List, that modi- fies each element in a tree with a given function.
+    */
+  test("Exercise 3.28: Map") {
+    def even: Int => Boolean = (x: Int) => x % 2 == 0
+    Tree.map(exampleTreeInt)(even) should be (Branch(
+      Branch(
+        Branch(
+          Leaf(false),
+          Leaf(true)
+        ),
+        Branch(
+          Leaf(true),
+          Leaf(false)
+        )
+      ),
+      Branch(
+        Leaf(false),
+        Leaf(true)
+      )
+    ))
+  }
 }

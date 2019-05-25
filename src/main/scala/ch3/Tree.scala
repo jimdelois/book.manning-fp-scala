@@ -41,4 +41,15 @@ object Tree {
     case Leaf(_) => 0
     case Branch(l, r) => 1 + depth(l).max(depth(r))
   }
+
+  /**
+    * Exercise 3.28
+    *
+    * Write a function map, analogous to the method of the same name on
+    * List, that modi- fies each element in a tree with a given function.
+    */
+  def map[A,B](t: Tree[A])(f: A => B): Tree[B] = t match {
+    case Leaf(value) => Leaf[B](f(value))
+    case Branch(l, r) => Branch[B](map(l)(f), map(r)(f))
+  }
 }
