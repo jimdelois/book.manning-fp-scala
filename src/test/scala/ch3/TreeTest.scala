@@ -100,4 +100,17 @@ class TreeTest extends FunSuite with Matchers {
       )
     ))
   }
+
+  /**
+    * Exercise 3.29
+    */
+  test("Exercise 3.29: Size via Fold") {
+
+    Tree.sizeFold(Branch(
+      Leaf("a"),
+      Leaf("b")
+    )) should be (3)
+
+    Tree.sizeFold(exampleTree) should be (7)
+  }
 }
