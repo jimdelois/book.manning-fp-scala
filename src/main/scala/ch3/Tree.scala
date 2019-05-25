@@ -14,12 +14,9 @@ object Tree {
     * Write a function size that counts the number of
     * nodes (leaves and branches) in a tree.
     */
-  def size[A](t: Tree[A]): Int = {
-    def go(t: Tree[A], agg: Int): Int = t match {
-      case Leaf(_) => agg
-      case Branch(l, r) => go(l, go(r, agg + 1) + 1)
-    }
-    go(t,1)
+  def size[A](t: Tree[A]): Int = t match {
+    case Leaf(_) => 1
+    case Branch(l, r) => size(l) + size(r) + 1
   }
 
   /**
@@ -29,12 +26,9 @@ object Tree {
     * (Note: In Scala, you can use x.max(y) or x max y to compute the maximum
     * of two integers x andy.)
     */
-  def maximum(t: Tree[Int]): Int = {
-    def go(t: Tree[Int], max: Int): Int = t match {
-      case Leaf(value) => value.max(max)
-      case Branch(l,r) => go(l,max).max(go(r,max))
-    }
-    go(t,0)
+  def maximum(t: Tree[Int]): Int = t match {
+    case Leaf(value) => value
+    case Branch(l, r) => maximum(l).max(maximum(r))
   }
 
   /**
