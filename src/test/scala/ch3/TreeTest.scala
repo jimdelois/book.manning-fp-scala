@@ -21,6 +21,23 @@ class TreeTest extends FunSuite with Matchers {
     )
   )
 
+  val exampleTreeInt:Tree[Int] = Branch(
+    Branch(
+      Branch(
+        Leaf(25),
+        Leaf(16)
+      ),
+      Branch(
+        Leaf(8),
+        Leaf(13)
+      )
+    ),
+    Branch(
+      Leaf(19),
+      Leaf(22)
+    )
+  )
+
   /**
     * Exercise 3.25
     *
@@ -35,5 +52,16 @@ class TreeTest extends FunSuite with Matchers {
     )) should be (3)
 
     Tree.size(exampleTree) should be (7)
+  }
+
+  /**
+    * Exercise 3.26
+    *
+    * Write a function maximum that returns the maximum element in a Tree[Int].
+    * (Note: In Scala, you can use x.max(y) or x max y to compute the maximum
+    * of two integers x andy.)
+    */
+  test("Exercise 3.26: Maximum") {
+    Tree.maximum(exampleTreeInt) should be (25)
   }
 }
