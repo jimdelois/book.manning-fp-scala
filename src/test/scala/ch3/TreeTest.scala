@@ -64,4 +64,14 @@ class TreeTest extends FunSuite with Matchers {
   test("Exercise 3.26: Maximum") {
     Tree.maximum(exampleTreeInt) should be (25)
   }
+
+  /**
+    * Exercise 3.27
+    *
+    * Write a function depth that returns the maximum path length from
+    * the root of a tree to any leaf.
+    */
+  test("Exercise 3.27 Depth") {
+    Tree.depth(exampleTree) should be (2)
+  }
 }
