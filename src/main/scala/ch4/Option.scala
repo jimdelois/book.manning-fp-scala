@@ -9,6 +9,14 @@ sealed trait Option[+A] {
     * and in what situations you’d use it. We’ll explore when to use each of
     * these functions next.
     */
+  def map[B](f: A => B): Option[B] = this match {
+    case Some(result) => Some(f(result))
+    case None => None
+  }
+
+  /**
+    * Exercise 4.1
+    */
   def getOrElse[B >: A](default: => B): B = this match {
     case Some(result) => result
     case None => default
