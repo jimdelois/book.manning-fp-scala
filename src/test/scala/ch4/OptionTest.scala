@@ -19,8 +19,8 @@ class OptionTest extends FunSuite with Matchers {
     * these functions next.
     */
   test("Exercise 4.1: map") {
-    Some[Double](2.88).map(_.toString()) should be (Some[String]("2.88"))
-    None.map(_.toString()) should be (None)
+    Some[Double](2.88).map(_.toString) should be (Some[String]("2.88"))
+    None.map(_.toString) should be (None)
   }
 
   /**
@@ -29,5 +29,13 @@ class OptionTest extends FunSuite with Matchers {
   test("Exercise 4.1: getOrElse") {
     Some[String]("Nice").getOrElse("Not Nice") should be ("Nice")
     None.getOrElse("Not Nice") should be("Not Nice")
+  }
+
+  /**
+    * Exercise 4.1
+    */
+  test("Exercise 4.1: flatMap") {
+    Some[Double](2.88).flatMap(x => Some[String](x.toString)) should be (Some[String]("2.88"))
+    Some[Double](2.88).flatMap(_ => None) should be (None)
   }
 }
