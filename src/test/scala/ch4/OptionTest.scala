@@ -38,4 +38,12 @@ class OptionTest extends FunSuite with Matchers {
     Some[Double](2.88).flatMap(x => Some[String](x.toString)) should be (Some[String]("2.88"))
     Some[Double](2.88).flatMap(_ => None) should be (None)
   }
+
+  /**
+    * Exercise 4.1
+    */
+  test("Exercise 4.1: orElse") {
+    None.orElse(Some[String]("Else!")) should be (Some[String]("Else!"))
+    Some[String]("Some!").orElse(Some[String]("Else!")) should be (Some[String]("Some!"))
+  }
 }
