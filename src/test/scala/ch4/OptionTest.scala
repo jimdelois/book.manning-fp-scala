@@ -46,4 +46,14 @@ class OptionTest extends FunSuite with Matchers {
     None.orElse(Some[String]("Else!")) should be (Some[String]("Else!"))
     Some[String]("Some!").orElse(Some[String]("Else!")) should be (Some[String]("Some!"))
   }
+
+  /**
+    * Exercise 4.1
+    */
+  test("Exercise 4.1: filter") {
+    Some[Int](3).filter(_ % 2 == 0) should be (None)
+    Some[Int](3).filter(_ % 2 == 1) should be (Some[Int](3))
+    None.filter(_ => true) should be (None)
+    None.filter(_ => false) should be (None)
+  }
 }

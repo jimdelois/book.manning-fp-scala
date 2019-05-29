@@ -35,6 +35,13 @@ sealed trait Option[+A] {
   def orElse[B >: A](ob: => Option[B]): Option[B] = {
     this.map(Some(_)).getOrElse(ob)
   }
+
+  /**
+    * Exercise 4.1
+    */
+  def filter(f: A => Boolean): Option[A] = {
+    this.flatMap(a => if (f(a)) this else None)
+  }
 }
 
 case object None extends Option[Nothing]
