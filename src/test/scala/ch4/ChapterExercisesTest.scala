@@ -17,4 +17,35 @@ class ChapterExercisesTest extends FunSuite with Matchers {
     ChapterExercises.variance(List(1,2,3,5,5,6,7,8)) should be (Some(5.234375))
     ChapterExercises.variance(List()) should be (None)
   }
+
+  /**
+    * Section 4.3.2
+    *
+    * Lifting an Exception-oriented method
+    */
+  test("Section 4.3.2: Lift") {
+    ChapterExercises.lift(math.abs)(Some(-5)) should be(Some(5))
+  }
+
+  /**
+    * Section 4.3.2
+    */
+  test("Section 4.3.2: Lift Result") {
+    ChapterExercises.liftResult(math.abs)(-5) should be(Some(5))
+  }
+
+  /**
+    * Exercise 4.3
+    *
+    * Write a generic function map2 that combines two Option values using a
+    * binary function. If either Option value is None, then the return
+    * value is too.
+    */
+  test("Exercise 4.3: map2") {
+    def fullName(first: String, last:String): String = s"$first $last"
+
+    ChapterExercises.map2(Some("Jim"), Some("DeLois"))(fullName) should be (Some("Jim DeLois"))
+    ChapterExercises.map2(None, Some("DeLois"))(fullName) should be (None)
+    ChapterExercises.map2(Some("Jim"), None)(fullName) should be (None)
+  }
 }

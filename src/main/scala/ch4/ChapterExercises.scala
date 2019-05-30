@@ -18,4 +18,37 @@ object ChapterExercises {
 
     mean(xs).flatMap(m => mean(xs.map(x => math.pow(x - m, 2))))
   }
+
+  /**
+    * Section 4.3.2
+    *
+    * Lifting an Exception-oriented method
+    */
+  def lift[A,B](f: A => B): Option[A] => Option[B] = {
+    x:Option[A] => x.map(f)
+  }
+
+  /**
+    * Section 4.3.2
+    *
+    * Based on realizing that the above is useful for lifting in unison BOTH
+    * input and output, suppose we want to convert an Exception-oriented API
+    * result to an Option range, without altering its domain.
+    */
+  def liftResult[A, B](f: A => B): A => Option[B] = {
+    x:A => Some(f(x))
+  }
+
+  /**
+    * Exercise 4.3
+    *
+    * Write a generic function map2 that combines two Option values using a
+    * binary function. If either Option value is None, then the return
+    * value is too.
+    */
+  def map2[A,B,C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] = (a,b) match {
+    case (None,_) => None
+    case (_,None) => None
+    case (Some(x),Some(y)) => Some(f(x,y))
+  }
 }
