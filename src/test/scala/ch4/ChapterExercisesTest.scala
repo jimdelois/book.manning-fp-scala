@@ -47,5 +47,9 @@ class ChapterExercisesTest extends FunSuite with Matchers {
     ChapterExercises.map2(Some("Jim"), Some("DeLois"))(fullName) should be (Some("Jim DeLois"))
     ChapterExercises.map2(None, Some("DeLois"))(fullName) should be (None)
     ChapterExercises.map2(Some("Jim"), None)(fullName) should be (None)
+
+    ChapterExercises.map2Hinted(Some("Jim"), Some("DeLois"))(fullName) should be (Some("Jim DeLois"))
+    ChapterExercises.map2Hinted(None, Some("DeLois"))(fullName) should be (None)
+    ChapterExercises.map2Hinted(Some("Jim"), None)(fullName) should be (None)
   }
 }

@@ -51,4 +51,13 @@ object ChapterExercises {
     case (_,None) => None
     case (Some(x),Some(y)) => Some(f(x,y))
   }
+
+  /**
+    * Exercise 4.3
+    *
+    * After reviewing "hint" of solution, guided towards a solution using flatMap or map
+    */
+  def map2Hinted[A,B,C](a: Option[A], b:Option[B])(f: (A, B) => C): Option[C] = {
+    a.flatMap(x => b.flatMap(y => Some(f(x, y))))
+  }
 }
