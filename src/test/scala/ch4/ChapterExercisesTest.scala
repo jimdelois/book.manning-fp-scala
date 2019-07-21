@@ -52,4 +52,17 @@ class ChapterExercisesTest extends FunSuite with Matchers {
     ChapterExercises.map2Hinted(None, Some("DeLois"))(fullName) should be (None)
     ChapterExercises.map2Hinted(Some("Jim"), None)(fullName) should be (None)
   }
+
+  /**
+    * Exercise 4.4
+    *
+    * Write a function sequence that combines a list of Options into one Option containing
+    * a list of all the Some values in the original list. If the original list contains
+    * None even once, the result of the function should be None; otherwise the result should
+    * be Some with a list of all the values.
+    */
+  test("Exercise 4.4: sequence") {
+    ChapterExercises.sequence(List(Some(1), Some(2), Some(3))) should be (Some(1, 2, 3))
+    ChapterExercises.sequence(List(Some(1), None, Some(3))) should be (None)
+  }
 }
